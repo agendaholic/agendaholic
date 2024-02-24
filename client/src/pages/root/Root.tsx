@@ -2,66 +2,18 @@ import { useDisclosure } from "@mantine/hooks"
 import {
     AppShell,
     Avatar,
-    Badge,
     Burger,
-    Card,
+    Divider,
     Group,
     MantineColorScheme,
     Popover,
     SegmentedControl,
     Stack,
-    Text,
     useMantineColorScheme,
 } from "@mantine/core"
 import { Outlet } from "@tanstack/react-router"
-import { FC } from "react"
-import { TView } from "../../types/view.ts"
-import { Icon123 } from "@tabler/icons-react"
-
-//region NavbarItem
-type NavbarItemProps = {
-    to: string
-} & TView
-
-const NavbarItem: FC<NavbarItemProps> = (props) => {
-    return (
-        <Group justify={"space-between"}>
-            <Group>
-                <props.icon />
-                {props.label}
-            </Group>
-
-            <Group>
-                <Badge variant={"default"}>12</Badge>
-            </Group>
-        </Group>
-    )
-}
-//endregion
-
-//region Navbar
-const Navbar = () => {
-    return (
-        <Card withBorder={true} h={"100%"}>
-            {/*<Card.Section>*/}
-            <Stack>
-                <Stack>
-                    <Text size={"sm"} c={"gray"}>
-                        Default
-                    </Text>
-
-                    <Stack>
-                        <NavbarItem to={"/views/all"} icon={Icon123} label={"All"} count={12} />
-                        <NavbarItem to={"/views/personal"} icon={Icon123} label={"Personal"} count={12} />
-                        <NavbarItem to={"/views/work"} icon={Icon123} label={"Work"} count={12} />
-                    </Stack>
-                </Stack>
-            </Stack>
-            {/*</Card.Section>*/}
-        </Card>
-    )
-}
-//endregion
+import { IconSettings } from "@tabler/icons-react"
+import { Navbar } from "../../components/navbar"
 
 //region Header
 const Header = () => {
@@ -74,15 +26,26 @@ const Header = () => {
                     <Avatar />
                 </Popover.Target>
                 <Popover.Dropdown>
-                    <SegmentedControl
-                        value={colorScheme}
-                        onChange={(value) => setColorScheme(value as MantineColorScheme)}
-                        data={[
-                            { label: "Light", value: "light" },
-                            { label: "Dark", value: "dark" },
-                            { label: "Auto", value: "auto" },
-                        ]}
-                    />
+                    <Stack>
+                        <SegmentedControl
+                            value={colorScheme}
+                            onChange={(value) => setColorScheme(value as MantineColorScheme)}
+                            data={[
+                                { label: "Light", value: "light" },
+                                { label: "Dark", value: "dark" },
+                                { label: "Auto", value: "auto" },
+                            ]}
+                        />
+                        <Divider />
+                        <Group>
+                            <IconSettings />
+                            Settings
+                        </Group>
+                        <Group>
+                            <IconSettings />
+                            Log out
+                        </Group>
+                    </Stack>
                 </Popover.Dropdown>
             </Popover>
         </Group>

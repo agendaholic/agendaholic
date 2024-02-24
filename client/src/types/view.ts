@@ -1,13 +1,12 @@
-import { TTablerIcon } from "./icon.ts"
-
 export type TView = {
-    icon: TTablerIcon,
-    label: string,
+    id: string
+    emoji: string
+    label: string
     count: number
 }
 
 export type TSection = {
-    icon: TTablerIcon
+    id: string
     label: string
 }
 

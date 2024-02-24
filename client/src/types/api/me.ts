@@ -1,6 +1,6 @@
 import { TViewGroup } from "../view.ts"
 
-//region /me
+//region GET /me
 
 export type TApiMeRequest = {}
 
