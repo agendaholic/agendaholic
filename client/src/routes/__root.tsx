@@ -1,6 +1,11 @@
 import { createRootRoute } from "@tanstack/react-router"
-import { Root } from "../pages/root/Root.tsx"
+import { LayoutForUsers } from "../pages/layout/LayoutForUsers.tsx"
 
 export const Route = createRootRoute({
-    component: () => <Root />,
+    component: () => (
+        <>
+            <LayoutForUsers />
+            {/*<LayoutForNonUsers />*/}
+        </>
+    ),
 })

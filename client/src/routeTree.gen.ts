@@ -19,6 +19,8 @@ import { Route as ViewsViewIdImport } from './routes/views/$viewId'
 
 const SettingsLazyImport = createFileRoute('/settings')()
 const DashboardLazyImport = createFileRoute('/dashboard')()
+const AuthRegisterLazyImport = createFileRoute('/auth/register')()
+const AuthLoginLazyImport = createFileRoute('/auth/login')()
 
 // Create/Update Routes
 
@@ -31,6 +33,16 @@ const DashboardLazyRoute = DashboardLazyImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/dashboard.lazy').then((d) => d.Route))
+
+const AuthRegisterLazyRoute = AuthRegisterLazyImport.update({
+  path: '/auth/register',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/auth/register.lazy').then((d) => d.Route))
+
+const AuthLoginLazyRoute = AuthLoginLazyImport.update({
+  path: '/auth/login',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/auth/login.lazy').then((d) => d.Route))
 
 const ViewsViewIdRoute = ViewsViewIdImport.update({
   path: '/views/$viewId',
@@ -53,6 +65,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ViewsViewIdImport
       parentRoute: typeof rootRoute
     }
+    '/auth/login': {
+      preLoaderRoute: typeof AuthLoginLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/register': {
+      preLoaderRoute: typeof AuthRegisterLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -62,6 +82,8 @@ export const routeTree = rootRoute.addChildren([
   DashboardLazyRoute,
   SettingsLazyRoute,
   ViewsViewIdRoute,
+  AuthLoginLazyRoute,
+  AuthRegisterLazyRoute,
 ])
 
 /* prettier-ignore-end */

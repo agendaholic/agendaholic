@@ -53,15 +53,13 @@ const Header = () => {
 }
 //endregion
 
-export const Root = () => {
+export const LayoutForUsers = () => {
     const [opened, { toggle }] = useDisclosure()
 
     return (
         <AppShell
             header={{ height: { base: 60, sm: 0 } }}
             navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
-            // padding="md"
-            // bg={"gray.0"}
         >
             <AppShell.Header withBorder={false} hiddenFrom={"sm"}>
                 <Burger opened={opened} onClick={toggle} size="sm" />
